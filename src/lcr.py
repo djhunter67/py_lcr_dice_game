@@ -24,14 +24,16 @@ def user_inquiry() -> list[str]:
 
 
 # play again?
-def play_again() -> bool:
+def play_again() -> bool | None:
     """Ask the user if they want to play again."""
 
-    while True:
-        answer = input("Do you want to play again? (y/n): ")
-        if answer in ['y', 'n']:
-            break
-    return answer == 'y'
+    answer = input("Do you want to play again? (y/n): ")
+    if answer in ['y', 'n']:
+        return answer == 'y'
+    elif not isinstance(answer, str):
+        raise ValueError("Please enter 'y' or 'n'.")
+    else:
+        raise ValueError("Please enter 'y' or 'n'.")
 
 
 def roll_sixed_sided_die() -> int:
