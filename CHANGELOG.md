@@ -19,20 +19,6 @@ Here we write upgrade and change notes.
 
 --------------------------------------
 
-## Changes
+## [0.0.1] - 2022 OCT 08
 
--
-
-## Screenshotsg10
-
-(prefer animated gif)
-
-## Checklist
-
-- [ ] synced trunk
-- [ ] tested locally
-- [ ] added new dependencies
-- [ ] updated the docs
-- [ ] added a test
-
-# Fixes
+    - Project init
