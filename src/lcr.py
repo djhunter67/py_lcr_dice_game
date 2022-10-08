@@ -81,6 +81,71 @@ def l_c_r(rolled_die: int) -> bool:
     return match['R'] or match['L'] or match['C']
 
 
+class Game:
+    """Players begin with three chips and passes chips left or right depending on their roll"""
+
+    INIT_CHIPS: int = 3
+
+    def __init__(self, user_input: str) -> None:
+        self.players: str = user_input
+        self.chips: int = 0
+        self.rounds: int = 0
+        self.center_pot: int = 0
+
+    def next_round(self) -> int:
+        """Track the number of rounds played. Return the number of rounds played."""
+
+        self.rounds = + 1
+
+        return self.rounds
+
+    def total_chips(self) -> int:
+        """Return the total number of chips in play."""
+
+        self.chips = len(self.players) * self.INIT_CHIPS
+
+        return self.chips
+
+
+class Players(Game):
+    """Each player rolls the same number of die as chips they have"""
+
+    def __init__(self, user_name: list[str]) -> None:
+        self.user_name: str = user_name[-1]
+        self.chips: int = self.total_chips()
+
+    def __repr__(self) -> str:
+        return "<class 'Players'>"
+
+    def __str__(self) -> str:
+        return f"{self.user_name}"
+
+    def number_of_chips(self, add: bool, subtract: bool) -> int:
+        """Return and track the number of chips a player has."""
+
+        if add:
+            self.chips += 1
+        elif subtract:
+            self.chips -= 1
+
+        return self.chips
+
+    def roll_die(self) -> int:
+        """Roll the die and return the result."""
+
+        return roll_sixed_sided_die()
+
+    def roll_die_for_each_chip(self) -> list[int]:
+        """Roll the die for each chip a player has. Return the results."""
+
+        rolls: list[int] = []
+
+        for _ in range(self.chips):
+            rolls.append(self.roll_die())
+
+        return rolls
+
+
 def main() -> None:
 
     # how long does it take to run the program?
